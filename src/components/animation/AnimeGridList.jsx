@@ -2,8 +2,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import AnimeCard from './AnimeCard';
+import { useNavigate } from 'react-router-dom';
 
 const AnimeGridList = ({ data, isMovie }) => {
+  const navigate = useNavigate();
   return (
     <Grid>
       {data?.pages?.map((page, pageIndex) =>
@@ -13,6 +15,7 @@ const AnimeGridList = ({ data, isMovie }) => {
             posterPath={item.poster_path}
             title={isMovie ? item.title : item.name}
             date={isMovie ? item.release_date : item.first_air_date}
+            onClick={() => navigate(`/${isMovie ? 'movie' : 'tv'}/${item.id}`)}
           />
         ))
       )}

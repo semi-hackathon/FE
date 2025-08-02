@@ -20,7 +20,7 @@ export default Sidebar;
 const SideWrapper = styled.div`
   width: 10%;
   height: 100%;
-  background-color: blue;
+  background-color: #a78bfa;
   display: flex;
   justify-content: center;
 `;

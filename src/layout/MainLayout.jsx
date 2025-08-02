@@ -31,6 +31,7 @@ const LayoutContainer = styled.div`
   width: 100%;
 `;
 const OutletWrapper = styled.aside`
+  background-color: black;
   flex: 1; // 남는 영역 자동
   height: 90vh;
   overflow-y: auto;
