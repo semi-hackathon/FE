@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useOutletContext } from 'react-router-dom';
 import AnimeGridList from './AnimeGridList';
-
+import SkeletonGridList from './SkeletonGridList';
 const AnimePageLayout = ({ title, queryKey, queryFn, isMovie }) => {
   const { scrollRef } = useOutletContext();
 
@@ -35,8 +35,8 @@ const AnimePageLayout = ({ title, queryKey, queryFn, isMovie }) => {
     <Container>
       <Title>{title}</Title>
       <AnimeGridList data={data} isMovie={isMovie} />
-      {isFetchingNextPage && <LoadingText>추가 데이터 로딩 중...</LoadingText>}
-      {!hasNextPage && <LoadingText>더 이상 데이터가 없습니다.</LoadingText>}
+      {isFetchingNextPage && <SkeletonGridList />}
+      {!hasNextPage && <LoadingText></LoadingText>}
     </Container>
   );
 };
