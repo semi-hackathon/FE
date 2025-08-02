@@ -43,7 +43,7 @@ const LayoutContainer = styled.div`
   width: 95%;
 `;
 const OutletWrapper = styled.aside`
-  background-color: black;
+  background-color: #680707;
   flex: 1;
   height: 90vh;
   overflow-y: auto;
