@@ -6,15 +6,14 @@ import { useNavigate } from 'react-router-dom';
 
 const AnimeGridList = ({ data, isMovie }) => {
   const navigate = useNavigate();
+
   return (
     <Grid>
       {data?.pages?.map((page, pageIndex) =>
         page.results.map((item) => (
           <AnimeCard
             key={`${item.id}-${pageIndex}`}
-            posterPath={item.poster_path}
-            title={isMovie ? item.title : item.name}
-            date={isMovie ? item.release_date : item.first_air_date}
+            item={item}
             onClick={() => navigate(`/${isMovie ? 'movie' : 'tv'}/${item.id}`)}
           />
         ))

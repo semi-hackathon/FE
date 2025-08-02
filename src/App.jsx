@@ -9,6 +9,8 @@ import Find from './pages/Find';
 import AnimationPage from './pages/AnimationPage';
 import MoviePage from './pages/MoviePage';
 import DetailPage from './pages/DetailPage';
+import { SearchProvider } from './contexts/SearchContext'; // [추가]
+
 const router = createBrowserRouter([
   {
     element: <Survey />,
@@ -32,7 +34,11 @@ const router = createBrowserRouter([
   },
 ]);
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <SearchProvider>
+      <RouterProvider router={router} />
+    </SearchProvider>
+  );
 };
 
 export default App;

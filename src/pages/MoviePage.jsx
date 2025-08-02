@@ -38,10 +38,7 @@ const MoviePage = () => {
     <Container>
       <Header>
         <Title>영화 애니메이션</Title>
-        <GenreSelect
-          value={selectedGenre}
-          onChange={(e) => setSelectedGenre(Number(e.target.value))}
-        >
+        <GenreSelect value={selectedGenre} onChange={(e) => setSelectedGenre(Number(e.target.value))}>
           {genreOptions.map((genre) => (
             <option key={genre.value} value={genre.value}>
               {genre.label}
@@ -50,11 +47,7 @@ const MoviePage = () => {
         </GenreSelect>
       </Header>
 
-      <AnimePageLayout
-        queryKey={['movie-animes', selectedGenre]}
-        queryFn={fetchMovieAnimePage}
-        isMovie={true}
-      />
+      <AnimePageLayout queryKey={['movie-animes', selectedGenre]} queryFn={fetchMovieAnimePage} isMovie={true} />
     </Container>
   );
 };

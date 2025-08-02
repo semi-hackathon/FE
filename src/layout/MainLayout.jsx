@@ -1,17 +1,27 @@
-import { Outlet } from 'react-router-dom';
 import React, { useRef } from 'react';
+import { Outlet } from 'react-router-dom';
+import styled from 'styled-components';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
-import styled from 'styled-components';
+import { useSearch } from '../contexts/SearchContext'; // [추가]
+import SearchResults from '../pages/SearchResults'; // [추가] SearchResults 컴포넌트
+
 const MainLayout = () => {
   const scrollRef = useRef(null);
+  const { debouncedSearchTerm } = useSearch(); // [추가] Context에서 디바운스된 검색어 가져오기
+
   return (
     <LayoutWrapper>
       <Sidebar />
       <LayoutContainer>
         <Navbar />
         <OutletWrapper ref={scrollRef}>
-          <Outlet context={{ scrollRef }} />
+          {/* [변경] 검색어가 있으면 SearchResults를, 없으면 기존 Outlet을 렌더링 */}
+          {debouncedSearchTerm ? (
+            <SearchResults searchTerm={debouncedSearchTerm} />
+          ) : (
+            <Outlet context={{ scrollRef }} />
+          )}
         </OutletWrapper>
       </LayoutContainer>
     </LayoutWrapper>
@@ -20,10 +30,11 @@ const MainLayout = () => {
 
 export default MainLayout;
 
+// --- Styled Components (변경 없음) ---
 const LayoutWrapper = styled.div`
   width: 100%;
   height: 100vh;
-  display:flex;
+  display: flex;
 `;
 const LayoutContainer = styled.div`
   display: flex;
@@ -33,8 +44,8 @@ const LayoutContainer = styled.div`
 `;
 const OutletWrapper = styled.aside`
   background-color: black;
-  flex: 1; // 남는 영역 자동
+  flex: 1;
   height: 90vh;
   overflow-y: auto;
-  overflow-x: hidden; // 중요!
+  overflow-x: hidden;
 `;
