@@ -6,9 +6,10 @@ const Sidebar = () => {
   return (
     <SideWrapper>
       <MenuList>
-        <StyledLink to="/homepage">홈</StyledLink>
-        <StyledLink to="/popular">인기</StyledLink>
+        <Logo>Lacheln</Logo>
         <StyledLink to="/recommend">추천</StyledLink>
+        <StyledLink to="/animation">애니</StyledLink>
+        <StyledLink to="/movie">극장판</StyledLink>
         <StyledLink to="/favorites">찜</StyledLink>
       </MenuList>
     </SideWrapper>
@@ -18,17 +19,25 @@ const Sidebar = () => {
 export default Sidebar;
 
 const SideWrapper = styled.div`
-  width: 10%;
+  width: 5%;
   height: 100%;
-  background-color: rgb(178, 148, 225);
+  background-color: blue;
   display: flex;
   justify-content: center;
 `;
 
 const MenuList = styled.div`
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
+`;
+
+const Logo = styled.div`
+  font-size: 1rem;
+  margin: 20px 0px 20px 0px;
+  display:flex;
+  align-items:center;
 `;
 
 const StyledLink = styled(NavLink)`

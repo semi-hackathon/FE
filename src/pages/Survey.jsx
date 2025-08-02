@@ -2,90 +2,6 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const Container = styled.div`
-  max-width: 600px;
-  margin: 30px auto;
-  padding: 0 20px;
-`;
-
-const Greeting = styled.h2`
-  margin-bottom: 20px;
-  color: #333;
-`;
-
-const StartBox = styled.div`
-  text-align: center;
-  margin-top: 100px;
-`;
-
-const StartButton = styled.button`
-  padding: 15px 25px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  border: none;
-  border-radius: 10px;
-  background-color: #556cd6;
-  color: white;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: #4051b5;
-  }
-`;
-
-const FormSection = styled.div`
-  margin-top: 20px;
-`;
-
-const QuestionBlock = styled.div`
-  margin-bottom: 30px;
-
-  p {
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-`;
-
-const OptionGroup = styled.div`
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-`;
-
-const Option = styled.button`
-  flex: 1 1 40%;
-  padding: 10px 15px;
-  border: 1px solid ${({ selected }) => (selected ? "#556cd6" : "#aaa")};
-  border-radius: 8px;
-  background-color: ${({ selected }) => (selected ? "#e0e0ff" : "#f9f9f9")};
-  color: ${({ selected }) => (selected ? "#222" : "#333")};
-  cursor: pointer;
-  user-select: none;
-  transition: all 0.2s ease;
-
-  &:hover {
-    background-color: #e0e0ff;
-    border-color: #556cd6;
-  }
-`;
-
-const SubmitButton = styled.button`
-  display: block;
-  margin: 40px auto 0;
-  padding: 15px 40px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  border: none;
-  border-radius: 12px;
-  background-color: #556cd6;
-  color: white;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: #4051b5;
-  }
-`;
-
 const Survey = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -155,7 +71,7 @@ const Survey = () => {
 
       {!showSurvey ? (
         <StartBox>
-          <StartButton onClick={handleStart}>🎯 취저 애니 찾기</StartButton>
+          <StartButton onClick={handleStart}>나만의 애니 찾기</StartButton>
         </StartBox>
       ) : (
         <FormSection>
@@ -215,3 +131,91 @@ const Survey = () => {
 };
 
 export default Survey;
+
+const Container = styled.div`
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const Greeting = styled.h2`
+  margin-bottom: 20px;
+  color: #333;
+`;
+
+const StartBox = styled.div`
+  text-align: center;
+  margin-top: 20px;
+`;
+
+const StartButton = styled.button`
+  padding: 15px 25px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  background-color: #556cd6;
+  color: white;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #4051b5;
+  }
+`;
+
+const FormSection = styled.div`
+  margin-top: 20px;
+`;
+
+const QuestionBlock = styled.div`
+  margin-bottom: 30px;
+
+  p {
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+`;
+
+const OptionGroup = styled.div`
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+`;
+
+const Option = styled.button`
+  flex: 1 1 40%;
+  padding: 10px 15px;
+  border: 1px solid ${({ selected }) => (selected ? "#556cd6" : "#aaa")};
+  border-radius: 8px;
+  background-color: ${({ selected }) => (selected ? "#e0e0ff" : "#f9f9f9")};
+  color: ${({ selected }) => (selected ? "#222" : "#333")};
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #e0e0ff;
+    border-color: #556cd6;
+  }
+`;
+
+const SubmitButton = styled.button`
+  display: block;
+  margin: 40px auto 0;
+  padding: 15px 40px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 12px;
+  background-color: #556cd6;
+  color: white;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #4051b5;
+  }
+`;
