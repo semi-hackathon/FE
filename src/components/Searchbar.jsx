@@ -21,13 +21,10 @@ const Searchbar = () => {
       <StyledInput
         ref={inputRef}
         type="text"
-        placeholder="애니메이션, 영화 검색..."
+        placeholder="Search..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)} // Context의 상태 업데이트
       />
-      {/* [제거] 기존의 드롭다운 결과창(ResultsContainer)은 제거합니다.
-        메인 컨텐츠 영역이 실시간으로 바뀌므로 더 이상 필요하지 않습니다.
-      */}
     </SearchWrapper>
   );
 };
@@ -37,18 +34,22 @@ export default Searchbar;
 // --- Styled Components (일부 수정) ---
 const SearchWrapper = styled.div`
   position: relative;
-  width: 350px;
+  display: flex;
+  width: 40rem;
 `;
+
 const StyledInput = styled.input`
   width: 100%;
-  padding: 10px 15px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: background-color 0.2s;
+  padding: 0.7rem 1rem;
+  border: none;
+  border-bottom: 0.125rem solid white;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: lightgray;
+  background-color: #0f0f0f;
 
   &:focus {
-    background-color: #f0f0f0;
-    outline: none;
+    outline: 0.5px soild gray;
+    outline-offset: 0.25rem;
   }
 `;

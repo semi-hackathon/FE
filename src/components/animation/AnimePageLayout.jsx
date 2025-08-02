@@ -4,6 +4,8 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { useOutletContext } from 'react-router-dom';
 import AnimeGridList from './AnimeGridList';
 import SkeletonGridList from './SkeletonGridList';
+import SkeletonHeader from './SkeletonHeader';
+
 const AnimePageLayout = ({ title, queryKey, queryFn, isMovie }) => {
   const { scrollRef } = useOutletContext();
 
@@ -28,7 +30,12 @@ const AnimePageLayout = ({ title, queryKey, queryFn, isMovie }) => {
     return () => el.removeEventListener('scroll', onScroll);
   }, [scrollRef, fetchNextPage, hasNextPage, isFetchingNextPage]);
 
-  if (status === 'loading') return <LoadingText>로딩 중...</LoadingText>;
+  if (status === 'loading') return (
+    <Container>
+      <SkeletonHeader />
+      <SkeletonGridList />
+    </Container>
+  );
   if (status === 'error') return <LoadingText>에러: {error.message}</LoadingText>;
 
   return (
