@@ -10,7 +10,6 @@ const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_TOKEN;
 const genreOptions = [
   { label: "전체", value: 0 },
   { label: "액션 & 모험", value: 10759 },
-  { label: "애니메이션", value: 16 }, // 항상 포함되지만 버튼엔 표시
   { label: "코미디", value: 35 },
   { label: "범죄", value: 80 },
   { label: "다큐멘터리", value: 99 },
