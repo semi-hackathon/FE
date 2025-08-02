@@ -6,10 +6,9 @@ import AnimePageLayout from '../components/animation/AnimePageLayout';
 const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_TOKEN;
 
 const genreOptions = [
-  { label: '전체', value: 0 },
+  { label: '전체', value: 16 },
   { label: '액션', value: 28 },
   { label: '모험', value: 12 },
-  { label: '애니메이션', value: 16 },
   { label: '코미디', value: 35 },
   { label: '드라마', value: 18 },
   { label: '판타지', value: 14 },
@@ -19,7 +18,7 @@ const genreOptions = [
 const fetchTvAnimePage = async ({ pageParam = 1 }, selectedGenre) => {
   const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/discover/tv`, {
     params: {
-      with_genres: selectedGenre || 16,
+      with_genres: selectedGenre === 16 ? 16 : `16,${selectedGenre}`,
       language: 'ko-KR',
       page: pageParam,
     },
