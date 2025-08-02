@@ -10,7 +10,7 @@ import AnimationPage from './pages/AnimationPage';
 import MoviePage from './pages/MoviePage';
 import DetailPage from './pages/DetailPage';
 import { SearchProvider } from './contexts/SearchContext'; // [추가]
-
+import CallbackPage from './pages/CallbackPage';
 const router = createBrowserRouter([
   {
     element: <Survey />,
@@ -30,7 +30,10 @@ const router = createBrowserRouter([
   },
   {
     element: <LoginLayout />,
-    children: [{ path: '/login', element: <LoginPage /> }],
+    children: [
+      { path: '/login', element: <LoginPage /> },
+      { path: '/callback', element: <CallbackPage /> },
+    ],
   },
 ]);
 const App = () => {
