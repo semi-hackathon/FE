@@ -32,7 +32,8 @@ const searchByQuery = async (query) => {
   const filteredResults = data.results.filter(
     (item) =>
       item.poster_path &&
-      (item.media_type === "movie" || item.media_type === "tv")
+      (item.media_type === "movie" || item.media_type === "tv") &&
+      item.genre_ids?.includes(16)
   );
 
   // AnimeGridList 형식에 맞게 데이터를 반환

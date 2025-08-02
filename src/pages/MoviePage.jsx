@@ -7,7 +7,7 @@ const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_TOKEN;
 
 // ✅ 영화 장르 전체 목록
 const genreOptions = [
-  { label: '전체', value: 0 },
+  { label: '전체', value: 16 },
   { label: '액션', value: 28 },
   { label: '모험', value: 12 },
   { label: '코미디', value: 35 },
