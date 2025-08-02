@@ -6,7 +6,7 @@ const Sidebar = () => {
   return (
     <SideWrapper>
       <MenuList>
-        <StyledLink to="/">홈</StyledLink>
+        <StyledLink to="/homepage">홈</StyledLink>
         <StyledLink to="/popular">인기</StyledLink>
         <StyledLink to="/recommend">추천</StyledLink>
         <StyledLink to="/favorites">찜</StyledLink>
