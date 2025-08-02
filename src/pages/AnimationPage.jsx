@@ -55,7 +55,6 @@ const AnimationPage = () => {
       <AnimePageLayout
         queryKey={['tv-animes', selectedGenre]}
         queryFn={queryFn}
-        isMovie={false}
       />
     </Container>
   );

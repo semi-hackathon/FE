@@ -1,19 +1,14 @@
-// components/AnimeGridList.jsx
-import React from 'react';
-import styled from 'styled-components';
-import AnimeCard from './AnimeCard';
+import React from "react";
+import styled from "styled-components";
+import AnimeCard from "./AnimeCard";
 
-const AnimeGridList = ({ data, isMovie }) => {
+const AnimeGridList = ({ data }) => {
   return (
     <Grid>
       {data?.pages?.map((page, pageIndex) =>
         page.results.map((item) => (
-          <AnimeCard
-            key={`${item.id}-${pageIndex}`}
-            posterPath={item.poster_path}
-            title={isMovie ? item.title : item.name}
-            date={isMovie ? item.release_date : item.first_air_date}
-          />
+          // item 객체 전체를 props로 전달
+          <AnimeCard key={`${item.id}-${pageIndex}`} item={item} />
         ))
       )}
     </Grid>

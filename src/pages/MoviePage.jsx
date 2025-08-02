@@ -34,6 +34,9 @@ const MoviePage = () => {
     return res.data;
   };
 
+const MoviePage = () => (
+  <AnimePageLayout title="영화 애니메이션" queryKey={['movie-animes']} queryFn={fetchMovieAnimePage} />
+);
   return (
     <Container>
       <Header>
@@ -53,7 +56,6 @@ const MoviePage = () => {
       <AnimePageLayout
         queryKey={['movie-animes', selectedGenre]}
         queryFn={fetchMovieAnimePage}
-        isMovie={true}
       />
     </Container>
   );
