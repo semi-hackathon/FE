@@ -20,7 +20,7 @@ const fetchMovieAnimePage = async ({ pageParam = 1 }) => {
 };
 
 const MoviePage = () => (
-  <AnimePageLayout title="영화 애니메이션" queryKey={['movie-animes']} queryFn={fetchMovieAnimePage} isMovie={true} />
+  <AnimePageLayout title="영화 애니메이션" queryKey={['movie-animes']} queryFn={fetchMovieAnimePage} />
 );
 
 export default MoviePage;
