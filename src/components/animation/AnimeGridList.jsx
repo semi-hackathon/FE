@@ -1,14 +1,21 @@
-import React from "react";
-import styled from "styled-components";
-import AnimeCard from "./AnimeCard";
+// components/AnimeGridList.jsx
+import React from 'react';
+import styled from 'styled-components';
+import AnimeCard from './AnimeCard';
+import { useNavigate } from 'react-router-dom';
 
-const AnimeGridList = ({ data }) => {
+const AnimeGridList = ({ data, isMovie }) => {
+  const navigate = useNavigate();
+
   return (
     <Grid>
       {data?.pages?.map((page, pageIndex) =>
         page.results.map((item) => (
-          // item 객체 전체를 props로 전달
-          <AnimeCard key={`${item.id}-${pageIndex}`} item={item} />
+          <AnimeCard
+            key={`${item.id}-${pageIndex}`}
+            item={item}
+            onClick={() => navigate(`/${isMovie ? 'movie' : 'tv'}/${item.id}`)}
+          />
         ))
       )}
     </Grid>

@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
-import { Outlet } from "react-router-dom";
-import styled from "styled-components";
-import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
-import { useSearch } from "../contexts/SearchContext"; // [추가]
-import SearchResults from "../pages/SearchResults"; // [추가] SearchResults 컴포넌트
+import React, { useRef } from 'react';
+import { Outlet } from 'react-router-dom';
+import styled from 'styled-components';
+import Navbar from '../components/Navbar';
+import Sidebar from '../components/Sidebar';
+import { useSearch } from '../contexts/SearchContext'; // [추가]
+import SearchResults from '../pages/SearchResults'; // [추가] SearchResults 컴포넌트
 
 const MainLayout = () => {
   const scrollRef = useRef(null);
@@ -34,7 +34,7 @@ export default MainLayout;
 const LayoutWrapper = styled.div`
   width: 100%;
   height: 100vh;
-  display:flex;
+  display: flex;
 `;
 const LayoutContainer = styled.div`
   display: flex;
@@ -43,6 +43,7 @@ const LayoutContainer = styled.div`
   width: 95%;
 `;
 const OutletWrapper = styled.aside`
+  background-color: black;
   flex: 1;
   height: 90vh;
   overflow-y: auto;

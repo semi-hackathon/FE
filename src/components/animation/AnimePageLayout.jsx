@@ -1,25 +1,16 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { useOutletContext } from "react-router-dom";
-import AnimeGridList from "./AnimeGridList";
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { useOutletContext } from 'react-router-dom';
+import AnimeGridList from './AnimeGridList';
 
-// props에서 isMovie 제거
-const AnimePageLayout = ({ title, queryKey, queryFn }) => {
+const AnimePageLayout = ({ title, queryKey, queryFn, isMovie }) => {
   const { scrollRef } = useOutletContext();
 
-  const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-    status,
-    error,
-  } = useInfiniteQuery({
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status, error } = useInfiniteQuery({
     queryKey,
     queryFn,
-    getNextPageParam: (lastPage) =>
-      lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined,
+    getNextPageParam: (lastPage) => (lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined),
     staleTime: 1000 * 60 * 5,
     cacheTime: 1000 * 60 * 10,
     refetchOnWindowFocus: false,
@@ -29,27 +20,21 @@ const AnimePageLayout = ({ title, queryKey, queryFn }) => {
     const el = scrollRef.current;
     if (!el) return;
     const onScroll = () => {
-      if (
-        el.scrollHeight - el.scrollTop - el.clientHeight < 300 &&
-        hasNextPage &&
-        !isFetchingNextPage
-      ) {
+      if (el.scrollHeight - el.scrollTop - el.clientHeight < 300 && hasNextPage && !isFetchingNextPage) {
         fetchNextPage();
       }
     };
-    el.addEventListener("scroll", onScroll);
-    return () => el.removeEventListener("scroll", onScroll);
+    el.addEventListener('scroll', onScroll);
+    return () => el.removeEventListener('scroll', onScroll);
   }, [scrollRef, fetchNextPage, hasNextPage, isFetchingNextPage]);
 
-  if (status === "loading") return <LoadingText>로딩 중...</LoadingText>;
-  if (status === "error")
-    return <LoadingText>에러: {error.message}</LoadingText>;
+  if (status === 'loading') return <LoadingText>로딩 중...</LoadingText>;
+  if (status === 'error') return <LoadingText>에러: {error.message}</LoadingText>;
 
   return (
     <Container>
       <Title>{title}</Title>
-      {/* AnimeGridList에 isMovie prop 제거 */}
-      <AnimeGridList data={data} />
+      <AnimeGridList data={data} isMovie={isMovie} />
       {isFetchingNextPage && <LoadingText>추가 데이터 로딩 중...</LoadingText>}
       {!hasNextPage && <LoadingText>더 이상 데이터가 없습니다.</LoadingText>}
     </Container>
@@ -66,6 +51,7 @@ const Container = styled.div`
 const Title = styled.h2`
   font-size: 1.5rem;
   margin-bottom: 1.25rem;
+  color: white;
 `;
 
 const LoadingText = styled.p`

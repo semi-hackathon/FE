@@ -8,8 +8,8 @@ import LoginPage from './pages/LoginPage';
 import Find from './pages/Find';
 import AnimationPage from './pages/AnimationPage';
 import MoviePage from './pages/MoviePage';
+import DetailPage from './pages/DetailPage';
 import { SearchProvider } from './contexts/SearchContext'; // [추가]
-
 
 const router = createBrowserRouter([
   {
@@ -24,6 +24,7 @@ const router = createBrowserRouter([
       { path: '/animation', element: <AnimationPage /> },
       { path: '/movie', element: <MoviePage /> },
       { path: '/favorites', element: <FavoritesPage /> },
+      { path: '/:type/:id', element: <DetailPage /> },
       { path: '/find', element: <Find /> },
     ],
   },
