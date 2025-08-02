@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import AnimeGridList from "../components/animation/AnimeGridList";
+import SkeletonGridList from "../components/animation/SkeletonGridList";
+import SkeletonHeader from "../components/animation/SkeletonHeader";
 
 // --- API 설정 (별도 파일로 분리해도 좋습니다) ---
 const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_TOKEN;
@@ -48,19 +50,28 @@ const SearchResults = ({ searchTerm }) => {
     staleTime: 1000 * 60 * 5, // 5분
   });
 
-  if (isLoading) return <StatusText>🔍 검색 결과를 불러오는 중...</StatusText>;
+  if (isLoading) return (
+    <Container>
+      <SkeletonHeader />
+      <SkeletonGridList />
+    </Container>
+  );
   if (isError) return <StatusText>오류 발생: {error.message}</StatusText>;
 
   const results = data?.pages?.[0]?.results || [];
 
   return (
     <Container>
-      <Title>"{searchTerm}"에 대한 검색 결과</Title>
-      {results.length > 0 ? (
-        <AnimeGridList data={data} />
-      ) : (
-        <StatusText>검색 결과가 없습니다.</StatusText>
-      )}
+      <Header>
+        <Title>"{searchTerm}"에 대한 검색 결과</Title>
+      </Header>
+      <LayoutContainer>
+        {results.length > 0 ? (
+          <AnimeGridList data={data} />
+        ) : (
+          <StatusText>검색 결과가 없습니다.</StatusText>
+        )}
+      </LayoutContainer>
     </Container>
   );
 };
@@ -69,18 +80,31 @@ export default SearchResults;
 
 // --- Styled Components ---
 const Container = styled.div`
-  padding: 1.25rem;
+  padding: 1.5rem;
   width: 100%;
 `;
 
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem;
+`;
+
 const Title = styled.h2`
-  font-size: 1.5rem;
-  margin-bottom: 1.25rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
 `;
 
 const StatusText = styled.p`
   text-align: center;
-  padding: 2rem;
+  padding: 2m;
   font-size: 1rem;
   color: #666;
+`;
+
+const LayoutContainer = styled.div`
+  padding: 1.25rem;
+  width: 100%;
 `;
