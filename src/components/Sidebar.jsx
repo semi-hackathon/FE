@@ -35,7 +35,8 @@ const MenuList = styled.div`
 
 const Logo = styled.div`
   font-size: 1.8rem;
-  margin: 5px 0px;
+  margin-top: 12px;
+  margin-bottom: 28px;
   display:flex;
   align-items:center;
   justify-content: center;

@@ -12,27 +12,27 @@ const SurveyPage = ({ userName = "사용자" }) => {
   const questions = [
     {
       key: "Q1",
-      question: "어떤 분위기의 애니를 보고 싶나요?",
+      question: "어떤 분위기의 애니를 좋아하시나요?",
       options: ["밝고 유쾌한", "잔잔하고 감성적인", "어둡고 진지한", "자극적이고 화려한"],
     },
     {
       key: "Q2",
-      question: "선호하는 장르는 무엇인가요?",
+      question: "어떤 장르의 애니를 선호하시나요?",
       options: ["판타지", "로맨스", "일상", "액션", "스릴러"],
     },
     {
       key: "Q3",
-      question: "어떤 요소에 집중하나요?",
+      question: "중요시하는 요소가 있으신가요?",
       options: ["캐릭터 중심", "스토리/세계관 중심", "연출/작화"],
     },
     {
       key: "Q4",
-      question: "전개 속도는 어떤 걸 선호하나요?",
+      question: "어느정도의 전개속도를 원하시나요?",
       options: ["빠른 전개", "느긋한 전개", "중간 정도"],
     },
     {
       key: "Q5",
-      question: "전달받고 싶은 메시지나 주제가 있나요?",
+      question: "중요시하는 애니의 주제나 메세지가 있으신가요?",
       options: ["성장", "우정", "사랑", "희망", "철학적 메시지"],
     },
   ];
@@ -68,6 +68,7 @@ const SurveyPage = ({ userName = "사용자" }) => {
     // } catch (error) {
     //   console.error("설문 제출 실패:", error);
     // }
+    console.log("설문 결과:", answers);
     navigate("/recommend", { state: { result: answers } });
   };
 
@@ -213,7 +214,7 @@ const OptionButton = styled.button`
 
   &:hover {
     background-color: #8A2BE2;
-    border-color: #8A2BE2;
+    border-color: #aaa;
   }
 `;
 

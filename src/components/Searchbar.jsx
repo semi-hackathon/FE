@@ -41,15 +41,12 @@ const SearchWrapper = styled.div`
 const StyledInput = styled.input`
   width: 100%;
   padding: 0.7rem 1rem;
-  border: none;
-  border-bottom: 0.125rem solid white;
+  border-radius: 20px;
+  border: 2px solid #aaa; /* 명확한 테두리 색상 지정 */
   font-size: 1.3rem;
   font-weight: bold;
-  color: lightgray;
   background-color: #0f0f0f;
+  color: #fff;
 
-  &:focus {
-    outline: 0.5px soild gray;
-    outline-offset: 0.25rem;
-  }
 `;
+
