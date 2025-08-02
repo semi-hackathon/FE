@@ -38,7 +38,6 @@ export default Searchbar;
 const SearchWrapper = styled.div`
   position: relative;
   width: 350px;
-  /* z-index는 이제 필요 없을 수 있습니다. */
 `;
 const StyledInput = styled.input`
   width: 100%;
