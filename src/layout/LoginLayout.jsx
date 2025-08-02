@@ -70,6 +70,7 @@ const LoginContainer = styled.div`
 `
 
 const KakaoLoginButton = styled.button`
+  width: 20rem;
   height: 5rem;
   font-size: 1.875rem;
   background-color:#fee500;

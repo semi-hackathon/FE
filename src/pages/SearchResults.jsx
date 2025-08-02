@@ -80,31 +80,31 @@ export default SearchResults;
 
 // --- Styled Components ---
 const Container = styled.div`
-  padding: 1.5rem;
+  padding: 0 1.5rem 1.5rem;
   width: 100%;
 `;
 
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 1.25rem;
+  gap: 1rem;
+  padding: 0 1.25rem 3rem;
 `;
 
 const Title = styled.h2`
   font-size: 1.8rem;
   font-weight: bold;
-  margin-bottom: 1.5rem;
+  color: white;
 `;
 
 const StatusText = styled.p`
   text-align: center;
-  padding: 2m;
+  padding: 2rem;
   font-size: 1rem;
   color: #666;
 `;
 
 const LayoutContainer = styled.div`
-  padding: 1.25rem;
+  padding: 2.75rem 1.25rem 0;
   width: 100%;
 `;

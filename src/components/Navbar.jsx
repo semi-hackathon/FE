@@ -19,11 +19,12 @@ const NavWrapper = styled.div`
   width: 100%;
   height: 10vh;
   background-color: #0f0f0f;
+  justify-content: center;
 `;
 
 const NavContainer = styled.div`
   display: flex;
   gap: 1rem;
   align-items: center;
-  margin-left: 1rem;
+  margin-top: 1rem;
 `;
