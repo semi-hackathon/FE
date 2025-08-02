@@ -7,9 +7,9 @@ const MainLayout = () => {
   const scrollRef = useRef(null);
   return (
     <LayoutWrapper>
-      <Navbar />
+      <Sidebar />
       <LayoutContainer>
-        <Sidebar />
+        <Navbar />
         <OutletWrapper ref={scrollRef}>
           <Outlet context={{ scrollRef }} />
         </OutletWrapper>
@@ -23,12 +23,13 @@ export default MainLayout;
 const LayoutWrapper = styled.div`
   width: 100%;
   height: 100vh;
+  display:flex;
 `;
 const LayoutContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  height: 90%;
-  width: 100%;
+  flex-direction: column;
+  height: 100%;
+  width: 95%;
 `;
 const OutletWrapper = styled.aside`
   background-color: black;

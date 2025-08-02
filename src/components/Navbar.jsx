@@ -6,7 +6,6 @@ const Navbar = () => {
   return (
     <NavWrapper>
       <NavContainer>
-        <Logo>Lacheln</Logo>
         <Searchbar />
       </NavContainer>
     </NavWrapper>
@@ -26,7 +25,7 @@ const NavContainer = styled.div`
   display: flex;
   gap: 1rem;
   align-items: center;
-  margin-left: 3rem;
+  margin-left: 1rem;
 `;
 
 const Logo = styled.strong`

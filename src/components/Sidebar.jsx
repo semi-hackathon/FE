@@ -6,8 +6,9 @@ const Sidebar = () => {
   return (
     <SideWrapper>
       <MenuList>
+        <Logo>Lacheln</Logo>
         <StyledLink to="/recommend">추천</StyledLink>
-        <StyledLink to="/animation">애니메이션</StyledLink>
+        <StyledLink to="/animation">애니</StyledLink>
         <StyledLink to="/movie">극장판</StyledLink>
         <StyledLink to="/favorites">찜</StyledLink>
       </MenuList>
@@ -18,7 +19,7 @@ const Sidebar = () => {
 export default Sidebar;
 
 const SideWrapper = styled.div`
-  width: 10%;
+  width: 5%;
   height: 100%;
   background-color: #a78bfa;
   display: flex;
@@ -26,9 +27,17 @@ const SideWrapper = styled.div`
 `;
 
 const MenuList = styled.div`
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
+`;
+
+const Logo = styled.div`
+  font-size: 1rem;
+  margin: 20px 0px 20px 0px;
+  display:flex;
+  align-items:center;
 `;
 
 const StyledLink = styled(NavLink)`
