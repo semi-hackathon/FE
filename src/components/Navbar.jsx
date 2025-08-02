@@ -6,6 +6,7 @@ const Navbar = () => {
   return (
     <NavWrapper>
       <NavContainer>
+        <Logo>LOGO</Logo>
         <Searchbar />
       </NavContainer>
     </NavWrapper>
@@ -28,7 +29,6 @@ const NavContainer = styled.div`
   margin-left: 3rem;
 `
 
-const HomeButton = styled.button`
-  all: unset;
+const Logo = styled.div`
   font-size: 1rem;
 `
