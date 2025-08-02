@@ -5,6 +5,7 @@ import AnimePageLayout from '../components/animation/AnimePageLayout';
 
 const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_TOKEN;
 
+// ✅ 영화 장르 전체 목록
 const genreOptions = [
   { label: '전체', value: 16 },
   { label: '액션', value: 28 },
@@ -13,15 +14,33 @@ const genreOptions = [
   { label: '드라마', value: 18 },
   { label: '판타지', value: 14 },
   { label: '로맨스', value: 10749 },
+  { label: '범죄', value: 80 },
+  { label: '공포', value: 27 },
+  { label: '스릴러', value: 53 },
+  { label: '미스터리', value: 9648 },
+  { label: '가족', value: 10751 },
+  { label: '음악', value: 10402 },
+  { label: '다큐멘터리', value: 99 },
+  { label: '역사', value: 36 },
+  { label: '전쟁', value: 10752 },
+  { label: '서부극', value: 37 },
+  { label: 'SF', value: 878 },
+  { label: 'TV 영화', value: 10770 },
 ];
 
 const MoviePage = () => {
-  const [selectedGenre, setSelectedGenre] = useState(16);
+  const [selectedGenre, setSelectedGenre] = useState(0);
 
   const fetchMovieAnimePage = async ({ pageParam = 1 }) => {
+    const withGenres = selectedGenre ? `16,${selectedGenre}` : '16'; // 항상 애니메이션(16)은 포함
+
     const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/discover/movie`, {
       params: {
+<<<<<<< HEAD
         with_genres: selectedGenre === 16 ? 16 : `16,${selectedGenre}`,
+=======
+        with_genres: withGenres,
+>>>>>>> e55ed0e12023b934c74da2845b2dd4884c8a82ce
         language: 'ko-KR',
         page: pageParam,
       },
@@ -46,7 +65,11 @@ const MoviePage = () => {
         </GenreSelect>
       </Header>
 
-      <AnimePageLayout queryKey={['movie-animes', selectedGenre]} queryFn={fetchMovieAnimePage} isMovie={true} />
+      <AnimePageLayout
+        queryKey={['movie-animes', selectedGenre]}
+        queryFn={fetchMovieAnimePage}
+        isMovie={true}
+      />
     </Container>
   );
 };

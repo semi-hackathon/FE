@@ -5,35 +5,49 @@ import AnimePageLayout from '../components/animation/AnimePageLayout';
 
 const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_TOKEN;
 
+// TV 장르 전체 목록
 const genreOptions = [
-  { label: '전체', value: 16 },
-  { label: '액션', value: 28 },
-  { label: '모험', value: 12 },
+  { label: '전체', value: 0 },
+  { label: '액션', value: 10759 },
+  { label: '모험', value: 10762 },
+  { label: '애니메이션', value: 16 },
   { label: '코미디', value: 35 },
+  { label: '범죄', value: 80 },
+  { label: '다큐멘터리', value: 99 },
   { label: '드라마', value: 18 },
-  { label: '판타지', value: 14 },
+  { label: '가족', value: 10751 },
+  { label: '판타지', value: 10765 },
+  { label: '역사', value: 36 },
+  { label: '공포', value: 27 },
+  { label: '음악', value: 10402 },
+  { label: '미스터리', value: 9648 },
   { label: '로맨스', value: 10749 },
+  { label: 'SF', value: 878 },
+  { label: 'TV 영화', value: 10770 },
+  { label: '스릴러', value: 53 },
+  { label: '전쟁', value: 10768 },
+  { label: '서부', value: 37 },
 ];
 
-const fetchTvAnimePage = async ({ pageParam = 1 }, selectedGenre) => {
-  const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/discover/tv`, {
-    params: {
-      with_genres: selectedGenre === 16 ? 16 : `16,${selectedGenre}`,
-      language: 'ko-KR',
-      page: pageParam,
-    },
-    headers: {
-      Authorization: `Bearer ${TMDB_BEARER_TOKEN}`,
-      accept: 'application/json',
-    },
-  });
-  return res.data;
-};
+const TvAnimePage = () => {
+  const [selectedGenre, setSelectedGenre] = useState(0);
 
-const AnimationPage = () => {
-  const [selectedGenre, setSelectedGenre] = useState(16);
+  const fetchTvAnimePage = async ({ pageParam = 1 }) => {
+    const withGenres = selectedGenre ? `16,${selectedGenre}` : '16'; // 항상 애니메이션(16)은 포함
 
-  const queryFn = ({ pageParam }) => fetchTvAnimePage({ pageParam }, selectedGenre);
+    const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/discover/tv`, {
+      params: {
+        with_genres: withGenres,
+        language: 'ko-KR',
+        page: pageParam,
+      },
+      headers: {
+        Authorization: `Bearer ${TMDB_BEARER_TOKEN}`,
+        accept: 'application/json',
+      },
+    });
+    return res.data;
+  };
 
   return (
     <Container>
@@ -48,12 +62,16 @@ const AnimationPage = () => {
         </GenreSelect>
       </Header>
 
-      <AnimePageLayout queryKey={['tv-animes', selectedGenre]} queryFn={queryFn} isMovie={false} />
+      <AnimePageLayout
+        queryKey={['tv-animes', selectedGenre]}
+        queryFn={fetchTvAnimePage}
+        isMovie={false}
+      />
     </Container>
   );
 };
 
-export default AnimationPage;
+export default TvAnimePage;
 
 // -------- styled-components --------
 const Container = styled.div`
