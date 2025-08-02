@@ -6,7 +6,6 @@ const Navbar = () => {
   return (
     <NavWrapper>
       <NavContainer>
-        <HomeButton>홈</HomeButton>
         <Searchbar />
       </NavContainer>
     </NavWrapper>

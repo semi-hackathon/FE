@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import DebouncedInfiniteScroll from '../hooks/DebouncedInfiniteScroll ';
+import DebouncedInfiniteScroll from '../hooks/DebouncedInfiniteScroll';
 const TMDB_BEARER_TOKEN = import.meta.env.VITE_TMDB_TOKEN;
 
 const fetchAnimePage = async ({ pageParam = 1, queryKey }) => {
