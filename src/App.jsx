@@ -1,34 +1,32 @@
 import LoginLayout from './layout/LoginLayout';
 import MainLayout from './layout/MainLayout';
-import HomePage from './pages/HomePage';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import PopularPage from './pages/PopularPage';
 import RecommendPage from './pages/RecommendPage';
 import FavoritesPage from './pages/FavoritesPage';
 import Survey from './pages/Survey';
 import LoginPage from './pages/LoginPage';
-
+import Find from './pages/Find';
+import AnimationPage from './pages/AnimationPage';
+import MoviePage from './pages/MoviePage';
 const router = createBrowserRouter([
   {
-    element: <Survey/>,
-    children: [{path: "/survey"}]
+    element: <Survey />,
+    children: [{ path: '/survey' }],
   },
   {
     element: <MainLayout />,
     children: [
-      { path: "/", element: <HomePage /> },
-      { path: "/popular", element: <PopularPage /> },
-      { path: "/recommend", element: <RecommendPage /> },
-      { path: "/favorites", element: <FavoritesPage /> },
-      { path: '/homepage', element: <HomePage /> },
-      { path: '/popular', element: <PopularPage /> },
+      { path: '/', element: <RecommendPage /> },
       { path: '/recommend', element: <RecommendPage /> },
+      { path: '/animation', element: <AnimationPage /> },
+      { path: '/movie', element: <MoviePage /> },
       { path: '/favorites', element: <FavoritesPage /> },
+      { path: '/find', element: <Find /> },
     ],
   },
   {
     element: <LoginLayout />,
-    children: [{ path: "/login", element: <LoginPage /> }],
+    children: [{ path: '/login', element: <LoginPage /> }],
   },
 ]);
 const App = () => {

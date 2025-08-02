@@ -6,9 +6,9 @@ const Sidebar = () => {
   return (
     <SideWrapper>
       <MenuList>
-        <StyledLink to="/homepage">홈</StyledLink>
-        <StyledLink to="/popular">인기</StyledLink>
         <StyledLink to="/recommend">추천</StyledLink>
+        <StyledLink to="/animation">애니메이션</StyledLink>
+        <StyledLink to="/movie">극장판</StyledLink>
         <StyledLink to="/favorites">찜</StyledLink>
       </MenuList>
     </SideWrapper>
