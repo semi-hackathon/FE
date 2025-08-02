@@ -1,5 +1,5 @@
-import React from "react";
-import styled, { keyframes } from "styled-components";
+import React from 'react';
+import styled, { keyframes } from 'styled-components';
 
 // 스켈레톤 UI에 적용할 반짝이는 애니메이션 효과
 const shimmer = keyframes`
@@ -37,7 +37,7 @@ const SkeletonGridList = ({ count = 10 }) => {
     <Grid>
       {Array.from({ length: count }, (_, i) => (
         // AnimeCard의 높이와 유사하게 설정
-        <SkeletonCard key={i} style={{ height: "15rem" }} />
+        <SkeletonCard key={i} style={{ height: '15rem' }} />
       ))}
     </Grid>
   );
