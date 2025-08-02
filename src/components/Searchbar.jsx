@@ -185,13 +185,12 @@ export default Searchbar;
 const SearchWrapper = styled.div`
   position: relative;
   width: 350px;
-  z-index: 100;
 `;
 const StyledInput = styled.input`
   width: 100%;
   padding: 10px 15px;
   border: 1px solid #ccc;
-  border-radius: 25px;
+  border-radius: 8px;
   font-size: 1rem;
 `;
 const ResultsContainer = styled.div`

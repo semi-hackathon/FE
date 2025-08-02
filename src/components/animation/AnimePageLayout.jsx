@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useOutletContext } from 'react-router-dom';
-import DebouncedInfiniteScroll from '../../hooks/DebouncedInfiniteScroll ';
+import DebouncedInfiniteScroll from '../../hooks/DebouncedInfiniteScroll';
 import AnimeGridList from './AnimeGridList';
 
 const AnimePageLayout = ({ title, queryKey, queryFn, isMovie }) => {
