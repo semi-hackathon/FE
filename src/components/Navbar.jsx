@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <NavWrapper>
       <NavContainer>
-        <HomeButton>홈</HomeButton>
+        <Logo>LOGO</Logo>
         <Searchbar />
       </NavContainer>
     </NavWrapper>
@@ -29,7 +29,6 @@ const NavContainer = styled.div`
   margin-left: 3rem;
 `
 
-const HomeButton = styled.button`
-  all: unset;
+const Logo = styled.div`
   font-size: 1rem;
 `
