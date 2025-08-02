@@ -1,7 +1,16 @@
-import React from 'react';
+import LoginLayout from './layout/LoginLayout';
+import MainLayout from './layout/MainLayout';
+import HomePage from './pages/HomePage';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
+const router = createBrowserRouter([
+  {
+    element: <MainLayout />,
+    children: [{ path: '/', element: <HomePage /> }],
+  },
+]);
 const App = () => {
-  return <div>App22</div>;
+  return <RouterProvider router={router} />;
 };
 
 export default App;
