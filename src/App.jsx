@@ -5,12 +5,17 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import PopularPage from './pages/PopularPage';
 import RecommendPage from './pages/RecommendPage';
 import FavoritesPage from './pages/FavoritesPage';
+import Survey from './pages/Survey';
 
 const router = createBrowserRouter([
   {
+    path: '/',
+    element: <Survey/>,
+  },
+  {
     element: <MainLayout />,
     children: [
-      { path: '/', element: <HomePage /> },
+      { path: '/homepage', element: <HomePage /> },
       { path: '/popular', element: <PopularPage /> },
       { path: '/recommend', element: <RecommendPage /> },
       { path: '/favorites', element: <FavoritesPage /> },
