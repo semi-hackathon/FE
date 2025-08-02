@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 import { useInfiniteQuery } from '@tanstack/react-query';
@@ -28,6 +29,7 @@ const fetchAnimePage = async ({ pageParam = 1, queryKey }) => {
 
 const HomePage = () => {
   const [activeTab, setActiveTab] = useState('movie');
+  const { scrollRef } = useOutletContext();
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status, error, refetch } = useInfiniteQuery({
     queryKey: ['animes', activeTab],
@@ -50,17 +52,17 @@ const HomePage = () => {
 
   // 무한 스크롤 이벤트
   useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
     const onScroll = () => {
-      if (
-        window.innerHeight + window.scrollY >= document.body.offsetHeight - 300 &&
-        hasNextPage &&
-        !isFetchingNextPage
-      ) {
+      if (el.scrollHeight - el.scrollTop - el.clientHeight < 300 && hasNextPage && !isFetchingNextPage) {
         fetchNextPage();
       }
     };
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+
+    el.addEventListener('scroll', onScroll);
+    return () => el.removeEventListener('scroll', onScroll);
   }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
   if (status === 'loading') return <LoadingText>로딩 중...</LoadingText>;
@@ -137,7 +139,7 @@ const LoadingText = styled.p`
 
 const AnimeGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr)); /* 120px */
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); /* 120px */
   gap: 0.9375rem; /* 15px */
 `;
 
@@ -147,14 +149,14 @@ const AnimeCard = styled.div`
 
   img {
     width: 100%;
-    height: 11.875rem; /* 190px */
+    height: 15rem;
     object-fit: cover;
     border-radius: 0.625rem; /* 10px */
   }
 
   p {
     font-weight: bold;
-    margin: 0.5rem 0 0.25rem; /* 8px 0 4px */
+    margin: 0.5rem 0 0; /* 8px 0 4px */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
