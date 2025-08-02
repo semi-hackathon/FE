@@ -36,11 +36,7 @@ const MoviePage = () => {
 
     const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/discover/movie`, {
       params: {
-<<<<<<< HEAD
-        with_genres: selectedGenre === 16 ? 16 : `16,${selectedGenre}`,
-=======
         with_genres: withGenres,
->>>>>>> e55ed0e12023b934c74da2845b2dd4884c8a82ce
         language: 'ko-KR',
         page: pageParam,
       },

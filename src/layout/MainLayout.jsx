@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { useRef, useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
@@ -8,7 +8,14 @@ import SearchResults from '../pages/SearchResults'; // [추가] SearchResults �
 
 const MainLayout = () => {
   const scrollRef = useRef(null);
-  const { debouncedSearchTerm } = useSearch(); // [추가] Context에서 디바운스된 검색어 가져오기
+  const { debouncedSearchTerm, setSearchTerm } = useSearch(); // [추가] Context에서 디바운스된 검색어 가져오기
+  const location = useLocation();
+
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      setSearchTerm('');
+    }
+  }, [location.pathname]);
 
   return (
     <LayoutWrapper>
