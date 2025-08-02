@@ -47,10 +47,10 @@ const LayoutContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 95%;
+  width: 90%;
 `;
 const OutletWrapper = styled.aside`
-  background-color: #680707;
+  background-color: #0f0f0f;
   flex: 1;
   height: 90vh;
   overflow-y: auto;
