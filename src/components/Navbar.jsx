@@ -18,7 +18,7 @@ const NavWrapper = styled.div`
   display: flex;
   width: 100%;
   height: 10vh;
-  background-color: #a78bfa;
+  background-color: #0f0f0f;
 `;
 
 const NavContainer = styled.div`
@@ -26,9 +26,4 @@ const NavContainer = styled.div`
   gap: 1rem;
   align-items: center;
   margin-left: 1rem;
-`;
-
-const Logo = styled.strong`
-  font-size: 1rem;
-  color: violet;
 `;
