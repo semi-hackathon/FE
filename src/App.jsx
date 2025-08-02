@@ -10,8 +10,8 @@ import LoginPage from './pages/LoginPage';
 
 const router = createBrowserRouter([
   {
-    path: '/',
     element: <Survey/>,
+    children: [{path: "/survey"}]
   },
   {
     element: <MainLayout />,
@@ -25,10 +25,6 @@ const router = createBrowserRouter([
       { path: '/recommend', element: <RecommendPage /> },
       { path: '/favorites', element: <FavoritesPage /> },
     ],
-  },
-  {
-    element: <LoginLayout />,
-    children: [{ path: "/login", element: <LoginPage /> }],
   },
   {
     element: <LoginLayout />,
