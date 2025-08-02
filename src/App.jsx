@@ -11,10 +11,11 @@ import MoviePage from './pages/MoviePage';
 import DetailPage from './pages/DetailPage';
 import { SearchProvider } from './contexts/SearchContext'; // [추가]
 import CallbackPage from './pages/CallbackPage';
+import Redirection from './pages/Redirection';
 const router = createBrowserRouter([
   {
+    path: '/survey',
     element: <Survey />,
-    children: [{ path: '/survey' }],
   },
   {
     element: <MainLayout />,
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
     element: <LoginLayout />,
     children: [
       { path: '/login', element: <LoginPage /> },
-      { path: '/callback', element: <CallbackPage /> },
+      { path: '/callback', element: <Redirection /> },
     ],
   },
 ]);
