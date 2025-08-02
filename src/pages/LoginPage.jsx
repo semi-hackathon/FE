@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { useState } from 'react';
 import styled from 'styled-components';
-
+import React from 'react';
 const link = `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_REST_API_KEY}&redirect_uri=${
-  import.meta.env.VITE_REDIRECT_URI
+  import.meta.env.VITE_REDIRECT_URL
 }&response_type=code`;
 function loginHandler() {
   window.location.href = link;

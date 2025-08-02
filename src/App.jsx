@@ -4,13 +4,12 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import RecommendPage from './pages/RecommendPage';
 import FavoritesPage from './pages/FavoritesPage';
 import Survey from './pages/Survey';
-import LoginPage from './pages/LoginPage';
 import Find from './pages/Find';
+import LoginPage from './pages/LoginPage';
 import AnimationPage from './pages/AnimationPage';
 import MoviePage from './pages/MoviePage';
 import DetailPage from './pages/DetailPage';
 import { SearchProvider } from './contexts/SearchContext'; // [추가]
-import CallbackPage from './pages/CallbackPage';
 import Redirection from './pages/Redirection';
 const router = createBrowserRouter([
   {
@@ -32,6 +31,7 @@ const router = createBrowserRouter([
   {
     element: <LoginLayout />,
     children: [
+      { path: '/', element: <RecommendPage /> },
       { path: '/login', element: <LoginPage /> },
       { path: '/callback', element: <Redirection /> },
     ],

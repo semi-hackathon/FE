@@ -1,125 +1,86 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import styled from "styled-components";
-import AnimePageLayout from "../components/animation/AnimePageLayout";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import styled from 'styled-components';
+
+// 이 페이지는 최종적으로 AnimeGridList를 사용하여 결과를 표시해야 하지만,
+// 우선 API 연동에 초점을 맞춰 ID 목록을 간단히 출력하도록 작성되었습니다.
 
 const RecommendPage = () => {
-  const [animeList, setAnimeList] = useState([]);
+  const [recommendedIds, setRecommendedIds] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchAnimeByIds = async () => {
+    const fetchRecommendations = async () => {
       try {
-        // 백엔드에서 추천 애니메이션 ID 배열 받아오기
-        const response = await axios.get(
-          "https://lachelein-bcbhc0debxfah9bw.koreacentral-01.azurewebsites.net/recommend"
-        );
+        // 1. 로컬 스토리지에서 memberId 가져오기
+        const memberId = localStorage.getItem('id');
 
-        const ids = response.data; // 예: [12345, 67890, ...]
-        if (!Array.isArray(ids)) {
-          throw new Error("애니메이션 ID 목록이 배열 형태가 아닙니다.");
+        // memberId가 없으면 로그인 유도 또는 에러 처리
+        if (!memberId) {
+          throw new Error('로그인 정보가 없습니다. 로그인이 필요합니다.');
         }
 
-        const detailPromises = ids.map((id) =>
-          axios.get(`https://api.themoviedb.org/3/tv/${id}`, {
-            headers: {
-              Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`,
-            },
-          })
-        );
+        // 2. API 요청 경로와 본문(body) 데이터 준비
+        const url = `${import.meta.env.VITE_BACKEND_URL}/api/anime/recommend/${memberId}`;
+        const requestBody = {
+          q1: '밝고 유쾌한 분위기',
+          q2: '일상/로맨스',
+          q3: '캐릭터의 감정선과 성장에 집중되는 이야기',
+          q4: '빠르게 진행되며 몰입감 있는 전개',
+          q5: '성장, 도전, 자아찾기',
+        };
 
-        const results = await Promise.all(detailPromises);
-        const animeData = results.map((res) => res.data);
-        setAnimeList(animeData);
-      } catch (error) {
-        console.error("추천 애니메이션 불러오기 실패:", error);
+        // 3. axios를 사용하여 POST 요청 보내기
+        const response = await axios.post(url, requestBody);
+
+        // 4. 응답 데이터를 state에 저장
+        console.log(response);
+        setRecommendedIds(response.data);
+      } catch (err) {
+        setError(err);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchAnimeByIds();
-  }, []);
+    fetchRecommendations();
+  }, []); // 컴포넌트가 처음 렌더링될 때 한 번만 실행
 
-  return (
-    <Container>
-      <Header>
-        <Title>추천 애니메이션</Title>
-      </Header>
+  // 5. 로딩 및 에러 상태에 따른 UI 처리
+  if (loading) {
+    return <StatusText>추천 목록을 불러오는 중...</StatusText>;
+  }
 
-      {loading ? (
-        <LoadingText>불러오는 중...</LoadingText>
-      ) : (
-        <AnimeGrid>
-          {animeList.map((anime) => (
-            <AnimeCard key={anime.id}>
-              <Poster
-                src={
-                  anime.poster_path
-                    ? `https://image.tmdb.org/t/p/w300${anime.poster_path}`
-                    : "https://via.placeholder.com/300x450?text=No+Image"
-                }
-                alt={anime.name}
-              />
-              <Name>{anime.name}</Name>
-            </AnimeCard>
-          ))}
-        </AnimeGrid>
-      )}
-    </Container>
-  );
+  if (error) {
+    return <StatusText>오류가 발생했습니다: {error.message}</StatusText>;
+  }
+
+  return <></>;
 };
 
 export default RecommendPage;
 
-// ✅ 기존 코드 유지
+// --- Styled Components ---
+
 const Container = styled.div`
-  padding: 1.5rem;
+  padding: 1.25rem;
 `;
 
-const Header = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 0rem 1.25rem;
-`;
-
-const Title = styled.div`
-  font-size: 1.8rem;
-  font-weight: bold;
+const Title = styled.h2`
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
   color: white;
 `;
 
-// ✅ 추가된 스타일
-const LoadingText = styled.p`
+const StatusText = styled.p`
+  color: #a0a0a0;
   text-align: center;
+  padding: 2rem;
+`;
+
+const ResultList = styled.ul`
   color: white;
-  margin-top: 2rem;
-`;
-
-const AnimeGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 1rem;
-  padding: 1rem 1.25rem;
-`;
-
-const AnimeCard = styled.div`
-  background-color: #1e1e1e;
-  border-radius: 12px;
-  overflow: hidden;
-  text-align: center;
-`;
-
-const Poster = styled.img`
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-`;
-
-const Name = styled.div`
-  padding: 0.75rem;
-  color: white;
-  font-size: 1rem;
-  font-weight: 500;
+  list-style: none;
+  padding: 0;
 `;

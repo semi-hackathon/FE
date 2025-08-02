@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
-const SurveyPage = ({ userName = "사용자" }) => {
+const SurveyPage = ({ userName = '사용자' }) => {
   const navigate = useNavigate();
 
   const [showSurvey, setShowSurvey] = useState(false);
@@ -11,29 +11,29 @@ const SurveyPage = ({ userName = "사용자" }) => {
 
   const questions = [
     {
-      key: "q1",
-      question: "어떤 분위기의 애니를 좋아하시나요?",
-      options: ["밝고 유쾌한", "잔잔하고 감성적인", "어둡고 진지한", "자극적이고 화려한"],
+      key: 'q1',
+      question: '어떤 분위기의 애니를 좋아하시나요?',
+      options: ['밝고 유쾌한', '잔잔하고 감성적인', '어둡고 진지한', '자극적이고 화려한'],
     },
     {
-      key: "q2",
-      question: "어떤 장르의 애니를 선호하시나요?",
-      options: ["판타지", "로맨스", "일상", "액션", "스릴러"],
+      key: 'q2',
+      question: '어떤 장르의 애니를 선호하시나요?',
+      options: ['판타지', '로맨스', '일상', '액션', '스릴러'],
     },
     {
-      key: "q3",
-      question: "중요시하는 요소가 있으신가요?",
-      options: ["캐릭터 중심", "스토리/세계관 중심", "연출/작화"],
+      key: 'q3',
+      question: '중요시하는 요소가 있으신가요?',
+      options: ['캐릭터 중심', '스토리/세계관 중심', '연출/작화'],
     },
     {
-      key: "q4",
-      question: "어느정도의 전개속도를 원하시나요?",
-      options: ["빠른 전개", "느긋한 전개", "중간 정도"],
+      key: 'q4',
+      question: '어느정도의 전개속도를 원하시나요?',
+      options: ['빠른 전개', '느긋한 전개', '중간 정도'],
     },
     {
-      key: "q5",
-      question: "중요시하는 애니의 주제나 메세지가 있으신가요?",
-      options: ["성장", "우정", "사랑", "희망", "철학적 메시지"],
+      key: 'q5',
+      question: '중요시하는 애니의 주제나 메세지가 있으신가요?',
+      options: ['성장', '우정', '사랑', '희망', '철학적 메시지'],
     },
   ];
 
@@ -45,30 +45,35 @@ const SurveyPage = ({ userName = "사용자" }) => {
   };
 
   const handleSubmit = async () => {
+    const memberId = localStorage.getItem('id');
+    console.log(questions);
     try {
       // 예: 백엔드 API 주소는 필요에 따라 변경하세요.
-      const response = await fetch("https://lachelein-bcbhc0debxfah9bw.koreacentral-01.azurewebsites.net/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(answers),
-      });
+      const response = await fetch(
+        `https://lachelein-bcbhc0debxfah9bw.koreacentral-01.azurewebsites.net/api/anime/recommend/${memberId}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(answers),
+        }
+      );
 
       if (!response.ok) {
-        console.error("서버 응답 오류:", response.status);
+        console.error('서버 응답 오류:', response.status);
         return;
       }
 
       const result = await response.json();
-      console.log("서버 응답 결과:", result);
+      console.log('서버 응답 결과:', result);
 
       // 추천 페이지로 이동, 결과 state 전달
-      navigate("/recommend", { state: { result } });
+      navigate('/recommend', { state: { result } });
     } catch (error) {
-      console.error("설문 제출 실패:", error);
+      console.error('설문 제출 실패:', error);
     }
-    console.log("설문 결과:", answers);
+    console.log('설문 결과:', answers);
   };
 
   const renderCurrentQuestion = () => {
@@ -79,11 +84,7 @@ const SurveyPage = ({ userName = "사용자" }) => {
         <p>{question}</p>
         <Options>
           {options.map((option) => (
-            <OptionButton
-              key={option}
-              onClick={() => handleAnswer(key, option)}
-              $isSelected={answers[key] === option}
-            >
+            <OptionButton key={option} onClick={() => handleAnswer(key, option)} $isSelected={answers[key] === option}>
               {option}
             </OptionButton>
           ))}
@@ -112,20 +113,15 @@ const SurveyPage = ({ userName = "사용자" }) => {
       <Container>{renderCurrentQuestion()}</Container>
 
       {currentQuestionIndex > 0 && (
-        <FixedButtonLeft onClick={() => setCurrentQuestionIndex((prev) => prev - 1)}>
-          이전
-        </FixedButtonLeft>
+        <FixedButtonLeft onClick={() => setCurrentQuestionIndex((prev) => prev - 1)}>이전</FixedButtonLeft>
       )}
 
       {!isLastQuestion ? (
-        <FixedButtonRight
-          onClick={() => setCurrentQuestionIndex((prev) => prev + 1)}
-          disabled={!currentAnswer}
-        >
+        <FixedButtonRight onClick={() => setCurrentQuestionIndex((prev) => prev + 1)} disabled={!currentAnswer}>
           다음
         </FixedButtonRight>
       ) : (
-        <FixedButtonRight onClick={handleSubmit} disabled={!answers["q5"]}>
+        <FixedButtonRight onClick={handleSubmit} disabled={!answers['q5']}>
           제출하기
         </FixedButtonRight>
       )}
@@ -166,13 +162,13 @@ const StartButton = styled.button`
   font-size: 1.2rem;
   border-radius: 20px;
   border: none;
-  background-color: #8A2BE2;
+  background-color: #8a2be2;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #8A2BE2;
+    background-color: #8a2be2;
   }
 `;
 
@@ -205,14 +201,14 @@ const OptionButton = styled.button`
   padding: 12px 20px;
   font-size: 1rem;
   border-radius: 10px;
-  border: 2px solid ${({ $isSelected }) => ($isSelected ? "#8A2BE2" : "#aaa")};
-  background-color: ${({ $isSelected }) => ($isSelected ? "#8A2BE2" : "#1e1e1e")};
+  border: 2px solid ${({ $isSelected }) => ($isSelected ? '#8A2BE2' : '#aaa')};
+  background-color: ${({ $isSelected }) => ($isSelected ? '#8A2BE2' : '#1e1e1e')};
   color: white;
   cursor: pointer;
   transition: all 0.3s ease;
 
   &:hover {
-    background-color: #8A2BE2;
+    background-color: #8a2be2;
     border-color: #aaa;
   }
 `;
@@ -230,17 +226,17 @@ const FixedButtonLeft = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: #8A2BE2;
+    background-color: #8a2be2;
   }
 `;
 
 const FixedButtonRight = styled(FixedButtonLeft)`
   left: auto;
   right: 20px;
-  background-color: ${({ disabled }) => (disabled ? "#444" : "#8A2BE2")};
-  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+  background-color: ${({ disabled }) => (disabled ? '#444' : '#8A2BE2')};
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 
   &:hover {
-    background-color: ${({ disabled }) => (disabled ? "#444" : "#7a1fd2")};
+    background-color: ${({ disabled }) => (disabled ? '#444' : '#7a1fd2')};
   }
 `;
